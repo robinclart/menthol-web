@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+menthol fetch | curl -X POST "$1/api/accounts" -H "Content-Type: application/json" -d @-

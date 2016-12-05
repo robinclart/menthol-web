@@ -1,24 +1,9 @@
-# README
+# Menthol Web Client
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is web client for [menthol](https://github.com/robinclart/menthol).
 
-Things you may want to cover:
+You can update your accounts using the provided `sync` executable. Note that the server needs to be running for this to work.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```sh
+bin/sync http://localhost:3000
+```
