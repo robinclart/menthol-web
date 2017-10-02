@@ -1,0 +1,14 @@
+<li class="AccountListItem">
+  <div class="AccountListItemLogoWrapper" style="background: <%= provider_color(provider) %>;">
+    <%= provider_image(provider) %>
+    <div class="AccountListItemAmount">
+      <%= amount.format %>
+    </div>
+  </div>
+  <div class="AccountListItemName">
+    <%= name %>
+  </div>
+  <div class="AccountListItemLastUpdate">
+    Last update: <%= l last_update, format: :short %>
+  </div>
+</li>

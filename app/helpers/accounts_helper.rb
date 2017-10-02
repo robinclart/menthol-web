@@ -1,4 +1,17 @@
 module AccountsHelper
+  def render_account_as_book(account)
+    render "accounts/book", book_hash(account)
+  end
+
+  def book_hash(account)
+    {
+      provider:     account.provider,
+      name:         account.display_name,
+      amount:       account.amount,
+      last_update:  account.updated_at&.in_time_zone("Asia/Bangkok"),
+    }
+  end
+
   def provider_image(provider_name)
     provider = provider_code(provider_name)
 
@@ -7,9 +20,9 @@ module AccountsHelper
 
   def provider_code(provider)
     case provider
-    when "Kasikorn"
+    when "Kasikornbank"
       "kbank"
-    when "Bangkok Bank"
+    when "Bangkokbank"
       "bbl"
     when "Krungsri"
       "bay"

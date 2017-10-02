@@ -1,19 +1,20 @@
-<div class="Total">
-  <%= @accounts.reduce(Money.new(0, @accounts.first.currency)) { |m,a| m + Money.new(a.amount_subunit, a.currency) }.format %>
-</div>
+<header class="Header">
+  <div class="Wrapper">
+    <div class="Logo">
+      <%= image_tag "menthol.png", height: 40 %>
+      menthol
+    </div>
+    <div class="TotalLabel">Total assets</div>
+    <div class="Total">
+      <%= @accounts.reduce(Money.new(0, @accounts.first.currency)) { |m,a| m + Money.new(a.amount_subunit, a.currency) }.format %>
+    </div>
+  </div>
+</header>
 
-<ul class="AccountList">
-  <% @accounts.sort { |x,y| "#{x.provider} - #{x.name}" <=> "#{y.provider} - #{y.name}" }.each do |account| %>
-    <li class="AccountListItem">
-      <div class="AccountListItemLogoWrapper" style="background: <%= provider_color(account.provider) %>;">
-        <%= provider_image(account.provider) %>
-      </div>
-      <div class="AccountListItemName">
-        <%= account.provider %> - <%= account.name %>
-      </div>
-      <div class="AccountListItemAmount">
-        <%= Money.new(account.amount_subunit, account.currency).format %>
-      </div>
-    </li>
-  <% end %>
-</ul>
+<div class="Wrapper">
+  <ul class="AccountList">
+    <% @accounts.each do |account| %>
+      <%= render_account_as_book(account) %>
+    <% end %>
+  </ul>
+</div>

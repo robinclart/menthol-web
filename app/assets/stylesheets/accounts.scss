@@ -5,16 +5,44 @@ body {
   background: white;
 }
 
-.Total {
+.Header {
   padding: 1.5em;
-  margin: 0 0 2em;
+  margin: 0 0 4em;
+  border-bottom: 1px solid mix(white, #17AE64, 75%);
+  background: mix(white, #17AE64, 95%);
+  color: mix(black, #17AE64, 80%);
+  text-align: right;
+}
+
+.Logo {
+  float: left;
+  padding-top: 10px;
+  font-size: 1.2em;
+  font-weight: bold;
+
+  img {
+    vertical-align: middle;
+  }
+}
+
+.Total {
   font-size: 2em;
-  text-align: center;
-  background: #38e;
-  color: white;
+  color: #17AE64;
+}
+
+.TotalLabel {
+  font-size: .875em;
+  font-weight: bold;
+}
+
+.Wrapper {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .AccountList {
+  overflow: hidden;
   width: 780px;
   margin: 0 auto;
   padding: 0;
@@ -29,23 +57,38 @@ body {
 }
 
 .AccountListItemLogoWrapper {
-  width: 220px;
-  margin: 0 0 10px;
-  padding: 30px 0;
+  overflow: hidden;
+  width: 180px;
+  margin: 0 0 6px;
+  padding: 30px 20px;
   border-radius: 2px 2px 8px 8px;
   background: black;
-  text-align: center;
+  text-align: right;
+
+  img {
+    float: left;
+    display: inline-block;
+    margin-right: 10px;
+  }
 }
 
 .AccountListItemName {
   line-height: 1.4em;
-  font-size: .75em;
+  font-size: .8em;
   font-weight: bold;
-  color: mix(white, black, 60%);
+  color: mix(white, black, 30%);
 }
 
 .AccountListItemAmount {
+  line-height: 40px;
+  color: white;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.AccountListItemLastUpdate {
   line-height: 1.4em;
-  font-size: 1.1em;
-  color: mix(white, black, 30%);
+  font-size: .7em;
+  font-weight: bold;
+  color: mix(white, black, 60%);
 }
