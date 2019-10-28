@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161128170558) do
+ActiveRecord::Schema.define(version: 20181015152147) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,4 +24,21 @@ ActiveRecord::Schema.define(version: 20161128170558) do
     t.datetime "updated_at",     null: false
   end
 
+  create_table "transactions", force: :cascade do |t|
+    t.text     "description"
+    t.integer  "amount_subunit"
+    t.string   "kind"
+    t.integer  "balance_subunit"
+    t.string   "channel"
+    t.text     "memo"
+    t.string   "digest"
+    t.integer  "account_id"
+    t.integer  "paired_transaction_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.index ["account_id"], name: "index_transactions_on_account_id", using: :btree
+    t.index ["paired_transaction_id"], name: "index_transactions_on_paired_transaction_id", using: :btree
+  end
+
+  add_foreign_key "transactions", "accounts"
 end

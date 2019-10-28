@@ -13,26 +13,37 @@
 
 <div class="Wrapper">
   <ul class="AccountList">
-    <% @accounts.each do |account| %>
-      <%= render_account_as_book(account) %>
-    <% end %>
+    <%= render_account_as_book(@account) %>
   </ul>
 </div>
 
 <div class="Wrapper">
+  <%= form_for @account, html: { multipart: true } do |f| %>
+    <%= file_field_tag :transactions %>
+    <%= f.submit %>
+  <% end %>
+
   <ul class="TransactionList">
     <% @transactions.each do |transaction| %>
       <% if transaction.paired_transaction? %>
         <% if transaction.kind == "debit" %>
           <li class="TransactionItem">
-            <div class="TransactionItemTime">
-              <%= l(transaction.created_at, format: :long).upcase %>
-            </div>
+            <div class="TransactionItemTime"><%= l(transaction.created_at, format: :long).upcase %></div>
             <span class="TransactionItemTransferAmount"><%= transaction.amount.format %></span>
             <span class="TransactionItemDescription">
               Transfer
               from <strong><%= transaction.account.provider %> <%= transaction.account.name %></strong>
               to <strong><%= transaction.paired_transaction.account.provider %> <%= transaction.paired_transaction.account.name %></strong>
+            </span>
+          </li>
+        <% else %>
+          <li class="TransactionItem">
+            <div class="TransactionItemTime"><%= l(transaction.created_at, format: :long).upcase %></div>
+            <span class="TransactionItemTransferAmount"><%= transaction.amount.format %></span>
+            <span class="TransactionItemDescription">
+              Transfer
+              from <strong><%= transaction.paired_transaction.account.provider %> <%= transaction.paired_transaction.account.name %></strong>
+              to <strong><%= transaction.account.provider %> <%= transaction.account.name %></strong>
             </span>
           </li>
         <% end %>
@@ -41,7 +52,6 @@
           <div class="TransactionItemTime"><%= l(transaction.created_at, format: :long).upcase %></div>
           <span class="TransactionItem<%= transaction.kind.capitalize %>Amount"><%= transaction.amount.format %></span>
           <span class="TransactionItemDescription">
-            <strong><%= transaction.account.provider %> <%= transaction.account.name %> &bull;</strong>
             <%= transaction.description %>
           </span>
           <span class="TransactionItemChannel">(<%= transaction.channel %>)</span>

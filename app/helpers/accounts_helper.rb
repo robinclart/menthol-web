@@ -5,6 +5,7 @@ module AccountsHelper
 
   def book_hash(account)
     {
+      id:           account.id,
       provider:     account.provider,
       name:         account.display_name,
       amount:       account.amount,
@@ -32,6 +33,10 @@ module AccountsHelper
       "scb"
     when "KTB"
       "ktb"
+    when "UOB"
+      "uob"
+    when "UOBAM"
+      "uob"
     end
   end
 

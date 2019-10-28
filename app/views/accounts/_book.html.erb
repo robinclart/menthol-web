@@ -6,7 +6,7 @@
     </div>
   </div>
   <div class="AccountListItemName">
-    <%= name %>
+    <%= link_to name, account_path(id) %>
   </div>
   <div class="AccountListItemLastUpdate">
     Last update: <%= l last_update, format: :short %>
